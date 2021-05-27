@@ -38,9 +38,11 @@ class Game:
                     return "enter"
 
     def mainmenu_handler(self, key):
+        self.currentstate = "Main Menu"
         self.mm.render(key)
 
     def songselect_handler(self):
+        self.currentstate = "Song Select"
         self.ss.render()
 
     def game_handler(self):
