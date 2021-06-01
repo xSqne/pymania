@@ -1,15 +1,20 @@
-import game
+from menus import songselect, playstage, game, mainmenu
 
 g = game.Game()
-state = "Main Menu"
+mm = mainmenu.MainMenu(g)
+ss = songselect.SongSelect(g)
+ps = playstage.PlayStage(g)
 
 
 def game(g, key):
     if g.currentstate == "Main Menu":
-        g.mainmenu_handler(key)
+        mm.render(key)
 
     elif g.currentstate == "Song Select":
-        g.songselect_handler(key)
+        ss.render(key)
+
+    elif g.currentstate == "Game":
+        ps.render()
 
 
 while g.game_running:
