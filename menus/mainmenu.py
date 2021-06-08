@@ -11,6 +11,7 @@ class MainMenu:
         self.options = [
             ("Play", self.play),
             ("Settings", self.settings),
+            ("Tutorial", self.tutorial),
             ("Exit", self.exit)
         ]
 
@@ -61,6 +62,10 @@ class MainMenu:
             json.dump(default, open('./settings.txt'))
         else:
             subprocess.run(["notepad", "settings.txt"])
+
+    def tutorial(self):
+        # Tutorial
+        self.game.tutorial_handler()
 
     def exit(self):
         pygame.quit()

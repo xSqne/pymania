@@ -14,7 +14,7 @@ class End:
         self.game.screen.blit(goodjob_text, (50, 230))
 
         # Esc text 1
-        esc_text = self.game.font.render("Press Esc to go back to the Main Menu", True, self.game.color)
+        esc_text = self.game.font.render("Press Esc to go back", True, self.game.color)
         self.game.screen.blit(esc_text, (50, 325))
 
         # Esc text 2

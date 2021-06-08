@@ -46,6 +46,9 @@ class SongSelect:
             text, handler = self.songs[self.choice]
             handler()
 
+        elif key == "esc":
+            self.game.currentstate = "Main Menu"
+
         # Update Display
         pygame.display.flip()
 

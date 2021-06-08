@@ -1,4 +1,4 @@
-from menus import songselect, stagerandom, game, mainmenu, end
+from menus import game
 
 g = game.Game()
 
@@ -6,6 +6,9 @@ g = game.Game()
 def game(g, event):
     if g.currentstate == "Main Menu":
         g.mm.render(event)
+
+    elif g.currentstate == "Tutorial":
+        g.t.render(event)
 
     elif g.currentstate == "Song Select":
         g.ss.render(event)

@@ -1,7 +1,7 @@
 import os
 import pygame
 
-from menus import mainmenu, songselect, stagerandom, end
+from menus import mainmenu, songselect, stagerandom, end, tutorial
 
 
 class Game:
@@ -11,20 +11,21 @@ class Game:
         self.width, self.height = 1280, 720
         self.screen = pygame.display.set_mode((self.width, self.height))
 
-        # Clock & 120 fps
+        # Clock & 60 fps
         self.clock = pygame.time.Clock()
-        self.clock.tick(120)
+        self.clock.tick(60)
+
+        # Background & Font & Color
+        self.font = pygame.font.Font(os.path.join('./resources', 'fonts', 'Aller_Bd.ttf'), 48)
+        self.background_image = pygame.image.load(os.path.join('./resources', 'img', 'background.jpg')).convert()
+        self.color = (0, 128, 255)
 
         # Instantiating menu classes
         self.mm = mainmenu.MainMenu(self)
         self.ss = songselect.SongSelect(self)
         self.sr = stagerandom.StageRandom(self)
         self.e = end.End(self)
-
-        # Background & Font & Color
-        self.font = pygame.font.Font(os.path.join('./resources', 'fonts', 'Aller_Bd.ttf'), 48)
-        self.background_image = pygame.image.load(os.path.join('./resources', 'img', 'background.jpg')).convert()
-        self.color = (0, 128, 255)
+        self.t = tutorial.Tutorial(self)
 
         # Finished initializing
         self.game_running = True
@@ -64,6 +65,9 @@ class Game:
 
     def mainmenu_handler(self):
         self.currentstate = "Main Menu"
+
+    def tutorial_handler(self):
+        self.currentstate = "Tutorial"
 
     def songselect_handler(self):
         self.currentstate = "Song Select"
