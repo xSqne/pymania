@@ -18,21 +18,21 @@ class SongSelect:
         self.game.screen.blit(self.game.background_image, (0, 0))
 
         # Title Text 1
-        select_text1 = self.game.font.render("Select a Song using", True, self.game.color)
+        select_text1 = self.game.titlefont.render("Select a Song using", True, self.game.color)
         self.game.screen.blit(select_text1, (50, 230))
 
         # Title Text 2
-        select_text2 = self.game.font.render("the arrow keys!", True, self.game.color)
+        select_text2 = self.game.titlefont.render("the arrow keys!", True, self.game.color)
         self.game.screen.blit(select_text2, (50, 300))
 
         # Selection Arrow
-        arrow = self.game.font.render(">", True, self.game.color)
+        arrow = self.game.titlefont.render(">", True, self.game.color)
         self.game.screen.blit(arrow, (800, 400 + 100 * self.choice))
 
         # Song Options
         for i, option in enumerate(self.songs):
             text, handler = option
-            song = self.game.font.render(text, True, self.game.color)
+            song = self.game.titlefont.render(text, True, self.game.color)
             self.game.screen.blit(song, (900, 400 + 100 * i))
 
         # Move selection arrow

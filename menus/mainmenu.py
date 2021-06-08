@@ -22,18 +22,18 @@ class MainMenu:
         self.game.screen.blit(self.game.background_image, (0, 0))
 
         # Title
-        label_title = self.game.font.render("Welcome to pymania", True, self.game.color)
+        label_title = self.game.titlefont.render("Welcome to pymania", True, self.game.color)
         self.game.screen.blit(label_title, (50, 230))
 
         # Selection Arrow
-        label_arrow = self.game.font.render(">", True, self.game.color)
+        label_arrow = self.game.titlefont.render(">", True, self.game.color)
         self.game.screen.blit(label_arrow, (800, 300 + 100 * self.choice))
 
         # Options
         for i, option in enumerate(self.options):
             text, handler = option
 
-            label_option = self.game.font.render(text, True, self.game.color)
+            label_option = self.game.titlefont.render(text, True, self.game.color)
 
             self.game.screen.blit(label_option, (850, 300 + 100 * i))
 
@@ -59,7 +59,8 @@ class MainMenu:
         # TODO: Add other OS compatibility & Create GUI
         if not os.path.exists('./settings.txt'):
             default = '{"fullscreen":False}'
-            json.dump(default, open('./settings.txt'))
+            json.dump(default, open('./settings.txt', 'w'))
+            subprocess.run(["notepad", "settings.txt"])
         else:
             subprocess.run(["notepad", "settings.txt"])
 

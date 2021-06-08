@@ -11,12 +11,13 @@ class Game:
         self.width, self.height = 1280, 720
         self.screen = pygame.display.set_mode((self.width, self.height))
 
-        # Clock & 60 fps
+        # Clock & 240 fps
         self.clock = pygame.time.Clock()
-        self.clock.tick(60)
+        self.clock.tick(240)
 
         # Background & Font & Color
-        self.font = pygame.font.Font(os.path.join('./resources', 'fonts', 'Aller_Bd.ttf'), 48)
+        self.titlefont = pygame.font.Font(os.path.join('./resources', 'fonts', 'Aller_Bd.ttf'), 48)
+        self.textfont = pygame.font.Font(os.path.join('./resources', 'fonts', 'Aller_Lt.ttf'), 32)
         self.background_image = pygame.image.load(os.path.join('./resources', 'img', 'background.jpg')).convert()
         self.color = (0, 128, 255)
 
