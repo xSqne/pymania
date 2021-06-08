@@ -13,9 +13,13 @@ class End:
         goodjob_text = self.game.font.render("Great Job!", True, self.game.color)
         self.game.screen.blit(goodjob_text, (50, 230))
 
-        # Esc text
+        # Esc text 1
         esc_text = self.game.font.render("Press Esc to go back to the Main Menu", True, self.game.color)
         self.game.screen.blit(esc_text, (50, 325))
+
+        # Esc text 2
+        esc_text = self.game.font.render("to the Main Menu", True, self.game.color)
+        self.game.screen.blit(esc_text, (50, 400))
 
         # Accuracy text
         acc_text = self.game.font.render("Accuracy: " + str(self.game.accuracy) + "%", True, self.game.color)
