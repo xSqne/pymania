@@ -1,24 +1,22 @@
-import time
-
-from menus import songselect, playstage, game, mainmenu
+from menus import songselect, stagerandom, game, mainmenu, end
 
 g = game.Game()
-mm = mainmenu.MainMenu(g)
-ss = songselect.SongSelect(g)
-ps = playstage.PlayStage(g)
 
 
 def game(g, event):
     if g.currentstate == "Main Menu":
-        mm.render(event)
+        g.mm.render(event)
 
     elif g.currentstate == "Song Select":
-        ss.render(event)
+        g.ss.render(event)
 
     elif g.currentstate == "Game":
-        ps.render()
+        g.sr.render(event)
+
+    elif g.currentstate == "End":
+        g.e.render(event)
+
 
 while g.game_running:
     event = g.events()
     game(g, event)
-

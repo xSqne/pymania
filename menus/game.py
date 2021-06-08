@@ -1,32 +1,41 @@
 import os
-
 import pygame
+
+from menus import mainmenu, songselect, stagerandom, end
 
 
 class Game:
     def __init__(self):
         pygame.init()
-
-        # Setting Resolution
+        # Setting resolution
         self.width, self.height = 1280, 720
         self.screen = pygame.display.set_mode((self.width, self.height))
 
-        # Clock & 60 fps
+        # Clock & 120 fps
         self.clock = pygame.time.Clock()
-        self.clock.tick(60)
+        self.clock.tick(120)
 
-        # Background & Font
+        # Instantiating menu classes
+        self.mm = mainmenu.MainMenu(self)
+        self.ss = songselect.SongSelect(self)
+        self.sr = stagerandom.StageRandom(self)
+        self.e = end.End(self)
+
+        # Background & Font & Color
         self.font = pygame.font.Font(os.path.join('./resources', 'fonts', 'Aller_Bd.ttf'), 48)
         self.background_image = pygame.image.load(os.path.join('./resources', 'img', 'background.jpg')).convert()
+        self.color = (0, 128, 255)
 
-        # Finished Initializing
+        # Finished initializing
         self.game_running = True
 
-        # Set Menu to Main Menu
+        # Set state to Main Menu
         self.currentstate = "Main Menu"
 
-        self.song = 0
+        # Define accuracy
+        self.accuracy = 100
 
+    # Function for handling events
     def events(self):
         for event in pygame.event.get():
             # Closing if pressed X on the game window
@@ -50,6 +59,8 @@ class Game:
                     return "j"
                 if event.key == pygame.K_k:
                     return "k"
+                if event.key == pygame.K_ESCAPE:
+                    return "esc"
 
     def mainmenu_handler(self):
         self.currentstate = "Main Menu"
@@ -57,11 +68,9 @@ class Game:
     def songselect_handler(self):
         self.currentstate = "Song Select"
 
-    def game_handler(self, song):
+    def game_handler(self):
         self.currentstate = "Game"
-        self.song = song
 
-
-
-
-
+    def end_handler(self, accuracy):
+        self.currentstate = "End"
+        self.accuracy = accuracy
