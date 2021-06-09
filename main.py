@@ -1,8 +1,10 @@
 from menus import game
 
+# Instantiation of main game class
 g = game.Game()
 
 
+# Managing states
 def game(g, event):
     if g.currentstate == "Main Menu":
         g.mm.render(event)
@@ -21,5 +23,6 @@ def game(g, event):
 
 
 while g.game_running:
+    # Get events
     event = g.events()
     game(g, event)

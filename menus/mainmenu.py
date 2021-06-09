@@ -1,7 +1,7 @@
-import json
 import os
 import pygame
 import subprocess
+import yaml
 
 
 class MainMenu:
@@ -58,11 +58,20 @@ class MainMenu:
     def settings(self):
         # TODO: Add other OS compatibility & Create GUI
         if not os.path.exists('./settings.txt'):
-            default = '{"fullscreen":False}'
-            json.dump(default, open('./settings.txt', 'w'))
-            subprocess.run(["notepad", "settings.txt"])
+            default = {
+                "fullscreen": False,
+                "fps": 60
+            }
+
+            with open('./settings.yml', "w") as f:
+                f.write("# This is a YAML config file. Make sure to follow the format or the program will break!\n"
+                        "# If you somehow misconfigure it, you can delete this file to generate a new one.\n"
+                        "# For the changes to apply, please restart your game!\n\n")
+                yaml.dump(default, f, indent=4, sort_keys=True)
+
+            subprocess.run(["notepad", "./settings.json"])
         else:
-            subprocess.run(["notepad", "settings.txt"])
+            subprocess.run(["notepad", "./settings.json"])
 
     def tutorial(self):
         # Tutorial

@@ -1,19 +1,39 @@
 import os
 import pygame
-
+import yaml
 from menus import mainmenu, songselect, stagerandom, end, tutorial
 
 
 class Game:
     def __init__(self):
         pygame.init()
+
+        # Setting Variables
+        self.fps = 240
+        self.fullscreen = False
+
+        # Try to read configuration file
+        try:
+            with open('./settings.yml', "r") as f:
+                parsed = yaml.safe_load(f)
+                self.fps = parsed.get("fps")
+                self.fullscreen = parsed.get("fullscreen")
+
+        # Catch FileNotFound error
+        except FileNotFoundError:
+            pass
+        
         # Setting resolution
         self.width, self.height = 1280, 720
         self.screen = pygame.display.set_mode((self.width, self.height))
 
-        # Clock & 240 fps
+        # Fullscreen
+        if self.fullscreen:
+            pygame.display.toggle_fullscreen()
+
+        # Clock & fps
         self.clock = pygame.time.Clock()
-        self.clock.tick(240)
+        self.clock.tick(self.fps)
 
         # Background & Font & Color
         self.titlefont = pygame.font.Font(os.path.join('./resources', 'fonts', 'Aller_Bd.ttf'), 48)

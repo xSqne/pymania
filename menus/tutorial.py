@@ -22,7 +22,8 @@ class Tutorial:
                          self.game.textfont.render("Press the Enter to select", True, self.game.color),
                          self.game.textfont.render("Press Esc to go back", True, self.game.color),
                          self.game.textfont.render("The game controls are at the right", True, self.game.color),
-                         self.game.textfont.render("Press the correct keys when the notes hit the line", True, self.game.color),
+                         self.game.textfont.render("Press the correct keys when the notes hit the line", True,
+                                                   self.game.color),
                          self.game.textfont.render("Have fun!", True, self.game.color)
                          ]
 

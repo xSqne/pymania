@@ -9,7 +9,7 @@ class Note(pygame.sprite.Sprite):
         self.ps = ps
         self.random_x = [510, 575, 640, 705]
         self.random_y = []
-        for i in range(90):
+        for i in range(60):
             self.random_y.append(int(i * random.randint(-150, -75)))
 
         # Generate a random coordinate
