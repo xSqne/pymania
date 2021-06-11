@@ -56,22 +56,33 @@ class MainMenu:
         self.game.songselect_handler()
 
     def settings(self):
-        # TODO: Add other OS compatibility & Create GUI
+        # Check if settings file exist
         if not os.path.exists('./settings.txt'):
             default = {
                 "fullscreen": False,
-                "fps": 60
+                "fps": 60,
+                "speed": 1
             }
 
+            # Create new one
             with open('./settings.yml', "w") as f:
                 f.write("# This is a YAML config file. Make sure to follow the format or the program will break!\n"
                         "# If you somehow misconfigure it, you can delete this file to generate a new one.\n"
                         "# For the changes to apply, please restart your game!\n\n")
                 yaml.dump(default, f, indent=4, sort_keys=True)
 
-            subprocess.run(["notepad", "./settings.json"])
+            # Catch Errors just in case
+            try:
+                subprocess.run(["notepad", "./settings.json"])
+            except Exception as e:
+                print("An execption has occured. Please report this on our GitHub\n Execption:")
+                print(e)
         else:
-            subprocess.run(["notepad", "./settings.json"])
+            try:
+                subprocess.run(["notepad", "./settings.json"])
+            except Exception as e:
+                print("An execption has occured. Please report this on our GitHub\n Execption:")
+                print(e)
 
     def tutorial(self):
         # Tutorial

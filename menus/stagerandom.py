@@ -27,7 +27,7 @@ class StageRandom:
         self.note_list = []
         self.note_coords = []
         for a in range(100):
-            notes = note.Note(self)
+            notes = note.Note(self, game)
             pygame.sprite.spritecollide(notes, self.note_group, True)
 
             self.note_group.add(notes)
@@ -85,6 +85,14 @@ class StageRandom:
 
         # Update Display
         pygame.display.flip()
+
+        # If escape key is detected, leave
+        if event == "esc":
+            # Change game state
+            self.game.currentstate = "Song Select"
+
+            # Reset
+            self.__init__(self.game)
 
         # When all the notes are killed
         if not self.note_group.sprites():

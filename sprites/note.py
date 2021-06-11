@@ -4,8 +4,9 @@ import pygame
 
 
 class Note(pygame.sprite.Sprite):
-    def __init__(self, ps):
+    def __init__(self, ps, game):
         super().__init__()
+        self.game = game
         self.ps = ps
         self.random_x = [510, 575, 640, 705]
         self.random_y = []
@@ -25,7 +26,7 @@ class Note(pygame.sprite.Sprite):
 
     def update(self):
         # Move the note down
-        self.rect.topleft = (self.rect.x, self.rect.y + 1)
+        self.rect.topleft = (self.rect.x, self.rect.y + self.game.speed)
 
         # When notes reach the end of the screen
         if self.rect.y > 720:

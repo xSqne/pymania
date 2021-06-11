@@ -8,28 +8,15 @@ class Game:
     def __init__(self):
         pygame.init()
 
-        # Setting Variables
+        # Default settings
         self.fps = 240
         self.fullscreen = False
+        self.accuracy = 100
+        self.speed = 1
 
-        # Try to read configuration file
-        try:
-            with open('./settings.yml', "r") as f:
-                parsed = yaml.safe_load(f)
-                self.fps = parsed.get("fps")
-                self.fullscreen = parsed.get("fullscreen")
-
-        # Catch FileNotFound error
-        except FileNotFoundError:
-            pass
-        
         # Setting resolution
         self.width, self.height = 1280, 720
         self.screen = pygame.display.set_mode((self.width, self.height))
-
-        # Fullscreen
-        if self.fullscreen:
-            pygame.display.toggle_fullscreen()
 
         # Clock & fps
         self.clock = pygame.time.Clock()
@@ -40,6 +27,22 @@ class Game:
         self.textfont = pygame.font.Font(os.path.join('./resources', 'fonts', 'Aller_Lt.ttf'), 32)
         self.background_image = pygame.image.load(os.path.join('./resources', 'img', 'background.jpg')).convert()
         self.color = (0, 128, 255)
+
+        # Try to read configuration file
+        try:
+            with open('./settings.yml', "r") as f:
+                parsed = yaml.safe_load(f)
+                self.fps = parsed.get("fps")
+                self.fullscreen = parsed.get("fullscreen")
+                self.speed = parsed.get("speed")
+
+        # Catch FileNotFound error
+        except FileNotFoundError:
+            pass
+
+        # Fullscreen
+        if self.fullscreen:
+            pygame.display.toggle_fullscreen()
 
         # Instantiating menu classes
         self.mm = mainmenu.MainMenu(self)
@@ -53,9 +56,6 @@ class Game:
 
         # Set state to Main Menu
         self.currentstate = "Main Menu"
-
-        # Define accuracy
-        self.accuracy = 100
 
     # Function for handling events
     def events(self):
