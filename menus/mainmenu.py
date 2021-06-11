@@ -57,7 +57,7 @@ class MainMenu:
 
     def settings(self):
         # Check if settings file exist
-        if not os.path.exists('./settings.txt'):
+        if not os.path.exists('./settings.yml'):
             default = {
                 "fullscreen": False,
                 "fps": 60,
@@ -73,13 +73,13 @@ class MainMenu:
 
             # Catch Errors just in case
             try:
-                subprocess.run(["notepad", "./settings.json"])
+                subprocess.run(["notepad", "./settings.yml"])
             except Exception as e:
                 print("An execption has occured. Please report this on our GitHub\n Execption:")
                 print(e)
         else:
             try:
-                subprocess.run(["notepad", "./settings.json"])
+                subprocess.run(["notepad", "./settings.yml"])
             except Exception as e:
                 print("An execption has occured. Please report this on our GitHub\n Execption:")
                 print(e)
